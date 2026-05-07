@@ -22,12 +22,10 @@ export default function SignupPage() {
     e.preventDefault()
     setError('')
 
-    if (!form.email.endsWith('@kangnam.ac.kr')) {
-      setError(
-        '강남대학교 이메일만 사용 가능합니다.\nGmail, Naver 등 외부 이메일은 사용할 수 없어요.\n예시: 20230001@kangnam.ac.kr'
-      )
-      return
-    }
+    // if (!form.email.endsWith('@kangnam.ac.kr')) {
+    //   setError('강남대학교 이메일만 사용 가능합니다.')
+    //   return
+    // }
 
     if (form.password !== form.confirmPassword) {
       setError('비밀번호가 일치하지 않습니다.')
