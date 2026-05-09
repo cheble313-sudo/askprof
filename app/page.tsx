@@ -43,20 +43,6 @@ export default async function Home() {
           >
             회원가입
           </Link>
-          <div className="relative my-2">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-200" />
-            </div>
-            <div className="relative flex justify-center">
-              <span className="text-xs text-gray-400 bg-white px-2">또는</span>
-            </div>
-          </div>
-          <Link
-            href="/anonymous"
-            className="block w-full bg-gray-100 text-gray-700 py-3 rounded-xl font-medium hover:bg-gray-200 transition text-sm"
-          >
-            로그인 없이 익명 질문하기
-          </Link>
         </div>
       </div>
     </main>

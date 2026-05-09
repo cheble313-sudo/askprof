@@ -93,9 +93,6 @@ export default function LoginPage() {
               회원가입
             </Link>
           </p>
-          <Link href="/anonymous" className="block text-sm text-gray-400 hover:text-gray-600">
-            로그인 없이 익명 질문하기
-          </Link>
         </div>
       </div>
     </main>
