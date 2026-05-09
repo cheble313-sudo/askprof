@@ -49,7 +49,8 @@ export default function AnonymousPage() {
     }
 
     for (const file of files) {
-      const filePath = `anon/${questionId}/${Date.now()}_${file.name}`
+      const ext = file.name.split('.').pop()
+      const filePath = `anon/${questionId}/${Date.now()}.${ext}`
       const { data: uploadData } = await supabase.storage.from('attachments').upload(filePath, file)
       if (uploadData) {
         const { data: urlData } = supabase.storage.from('attachments').getPublicUrl(filePath)
