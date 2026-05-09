@@ -56,7 +56,7 @@ export default function NewAnnouncementPage() {
       body: JSON.stringify({ type: 'announcement', announcementId, title: form.title }),
     })
 
-    router.push('/dashboard/professor')
+    router.push(`/announcements/${announcementId}`)
   }
 
   return (

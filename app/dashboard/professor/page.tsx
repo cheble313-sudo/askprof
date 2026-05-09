@@ -24,6 +24,12 @@ export default async function ProfessorDashboard() {
     .select('*, student:student_id(name, email), messages(id, content, author_type, created_at)')
     .order('updated_at', { ascending: false })
 
+  const { data: announcements } = await supabase
+    .from('announcements')
+    .select('*')
+    .order('created_at', { ascending: false })
+    .limit(5)
+
   const pending = questions?.filter((q) => q.status === 'pending') || []
   const answered = questions?.filter((q) => q.status === 'answered') || []
 
@@ -58,6 +64,24 @@ export default async function ProfessorDashboard() {
             <p className="text-xs text-gray-500 mt-1">답변 완료</p>
           </div>
         </div>
+
+        {announcements && announcements.length > 0 && (
+          <section>
+            <h2 className="text-sm font-semibold text-gray-500 mb-2">📢 내 공지사항</h2>
+            <div className="space-y-2">
+              {announcements.map((a: any) => (
+                <Link
+                  key={a.id}
+                  href={`/announcements/${a.id}`}
+                  className="block bg-yellow-50 border border-yellow-200 rounded-xl p-4 hover:bg-yellow-100 transition"
+                >
+                  <p className="text-sm font-medium text-gray-800">{a.title}</p>
+                  <p className="text-xs text-gray-400 mt-1">{new Date(a.created_at).toLocaleDateString('ko-KR')}</p>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
 
         {pending.length > 0 && (
           <section>
