@@ -24,8 +24,16 @@ export default function SignupPage() {
 
     if (!form.email.endsWith('@kangnam.ac.kr')) {
       setError(
-        '강남대학교 이메일만 사용 가능합니다.\nGmail, Naver 등 외부 이메일은 사용할 수 없어요.\n예시: 20230001@kangnam.ac.kr'
+        '강남대학교 이메일만 사용 가능합니다.\nGmail, Naver 등 외부 이메일은 사용할 수 없어요.\n예시: 202300001@kangnam.ac.kr'
       )
+      return
+    }
+
+    const isProfessor = form.idNumber.startsWith('1')
+    const isValidStudent = /^20\d{7}$/.test(form.idNumber)
+
+    if (!isProfessor && !isValidStudent) {
+      setError('학번은 20으로 시작하는 9자리 숫자여야 합니다.\n예시: 202300001')
       return
     }
 
