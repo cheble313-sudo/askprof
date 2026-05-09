@@ -47,7 +47,7 @@ export default async function AnnouncementDetailPage({
           <div className="mb-4 pb-4 border-b border-gray-100">
             <h2 className="text-xl font-bold text-gray-800">{announcement.title}</h2>
             <p className="text-xs text-gray-400 mt-1">
-              {new Date(announcement.created_at).toLocaleString('ko-KR')}
+              {new Date(announcement.created_at).toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })}
             </p>
           </div>
 

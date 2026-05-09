@@ -84,7 +84,7 @@ export default async function QuestionThreadPage({
                   : msg.author?.name || '학생'}
               </span>
               <span className="text-xs text-gray-400">
-                {new Date(msg.created_at).toLocaleString('ko-KR')}
+                {new Date(msg.created_at).toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })}
               </span>
             </div>
 

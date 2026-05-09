@@ -76,7 +76,7 @@ export default async function ProfessorDashboard() {
                   className="block bg-yellow-50 border border-yellow-200 rounded-xl p-4 hover:bg-yellow-100 transition"
                 >
                   <p className="text-sm font-medium text-gray-800">{a.title}</p>
-                  <p className="text-xs text-gray-400 mt-1">{new Date(a.created_at).toLocaleDateString('ko-KR')}</p>
+                  <p className="text-xs text-gray-400 mt-1">{new Date(a.created_at).toLocaleDateString('ko-KR', { timeZone: 'Asia/Seoul' })}</p>
                 </Link>
               ))}
             </div>
@@ -102,7 +102,7 @@ export default async function ProfessorDashboard() {
                     </span>
                     <span className="text-xs text-gray-300">·</span>
                     <span className="text-xs text-gray-400">
-                      {new Date(q.created_at).toLocaleDateString('ko-KR')}
+                      {new Date(q.created_at).toLocaleDateString('ko-KR', { timeZone: 'Asia/Seoul' })}
                     </span>
                   </div>
                 </Link>
@@ -130,7 +130,7 @@ export default async function ProfessorDashboard() {
                     </span>
                     <span className="text-xs text-gray-300">·</span>
                     <span className="text-xs text-gray-400">
-                      {new Date(q.created_at).toLocaleDateString('ko-KR')}
+                      {new Date(q.created_at).toLocaleDateString('ko-KR', { timeZone: 'Asia/Seoul' })}
                     </span>
                   </div>
                 </Link>

@@ -63,7 +63,7 @@ export default async function StudentDashboard() {
                 >
                   <p className="text-sm font-medium text-gray-800">{a.title}</p>
                   <p className="text-xs text-gray-400 mt-1">
-                    {new Date(a.created_at).toLocaleDateString('ko-KR')}
+                    {new Date(a.created_at).toLocaleDateString('ko-KR', { timeZone: 'Asia/Seoul' })}
                   </p>
                 </Link>
               ))}
@@ -96,7 +96,7 @@ export default async function StudentDashboard() {
                   <div className="flex items-center gap-2 mt-2">
                     {q.is_anonymous && <span className="text-xs text-gray-400">익명</span>}
                     <span className="text-xs text-gray-400">
-                      {new Date(q.created_at).toLocaleDateString('ko-KR')}
+                      {new Date(q.created_at).toLocaleDateString('ko-KR', { timeZone: 'Asia/Seoul' })}
                     </span>
                     {q.messages?.length > 1 && (
                       <span className="text-xs text-indigo-500">답변 {q.messages.length - 1}개</span>
