@@ -23,25 +23,25 @@ export default function NewAnnouncementPage() {
     const { data: { user } } = await supabase.auth.getUser()
     if (!user) return
 
-    const { data: announcement, error: aError } = await supabase
+    const announcementId = crypto.randomUUID()
+    const { error: aError } = await supabase
       .from('announcements')
-      .insert({ professor_id: user.id, title: form.title, content: form.content })
-      .select()
-      .single()
+      .insert({ id: announcementId, professor_id: user.id, title: form.title, content: form.content })
 
-    if (aError || !announcement) {
-      setError('공지 작성에 실패했습니다.')
+    if (aError) {
+      setError(`공지 작성에 실패했습니다: ${aError.message}`)
       setLoading(false)
       return
     }
 
     for (const file of files) {
-      const filePath = `announcements/${announcement.id}/${Date.now()}_${file.name}`
+      const ext = file.name.split('.').pop()
+      const filePath = `announcements/${announcementId}/${Date.now()}.${ext}`
       const { data: uploadData } = await supabase.storage.from('attachments').upload(filePath, file)
       if (uploadData) {
         const { data: urlData } = supabase.storage.from('attachments').getPublicUrl(filePath)
         await supabase.from('announcement_attachments').insert({
-          announcement_id: announcement.id,
+          announcement_id: announcementId,
           file_url: urlData.publicUrl,
           file_name: file.name,
           file_type: file.type,
@@ -53,7 +53,7 @@ export default function NewAnnouncementPage() {
     await fetch('/api/notify', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ type: 'announcement', announcementId: announcement.id, title: form.title }),
+      body: JSON.stringify({ type: 'announcement', announcementId, title: form.title }),
     })
 
     router.push('/dashboard/professor')
