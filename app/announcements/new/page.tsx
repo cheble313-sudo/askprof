@@ -106,10 +106,6 @@ export default function NewAnnouncementPage() {
 
           {error && <p className="text-sm text-red-500">{error}</p>}
 
-          <div className="flex items-center gap-2 p-3 bg-yellow-50 rounded-xl text-xs text-yellow-700">
-            📢 공지를 등록하면 가입된 모든 학생에게 이메일 알림이 발송됩니다.
-          </div>
-
           <button
             type="submit"
             disabled={loading}
