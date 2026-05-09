@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
+import DeleteAnnouncementButton from '@/components/DeleteAnnouncementButton'
 
 export default async function AnnouncementDetailPage({
   params,
@@ -34,7 +35,10 @@ export default async function AnnouncementDetailPage({
       <header className="bg-white shadow-sm">
         <div className="max-w-3xl mx-auto px-4 py-4 flex items-center gap-3">
           <Link href={backHref} className="text-gray-400 hover:text-gray-600">← 뒤로</Link>
-          <h1 className="text-lg font-bold text-gray-800">공지사항</h1>
+          <h1 className="text-lg font-bold text-gray-800 flex-1">공지사항</h1>
+          {profile?.role === 'professor' && (
+            <DeleteAnnouncementButton announcementId={id} />
+          )}
         </div>
       </header>
 
